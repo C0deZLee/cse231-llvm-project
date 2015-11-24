@@ -1,5 +1,3 @@
-
-
 #ifndef CFG_EDGE
 #define CFG_EDGE
 
@@ -16,8 +14,8 @@ public:
   CFGNode *dstNode;
   LatticeNode *latNode;
   CFGEdge(srcNode, dstNode){
-    this.srcNode = srcNode;
-    this.dstNode = dstNode;
+    this->srcNode = srcNode;
+    this->dstNode = dstNode;
   }
 }
 
