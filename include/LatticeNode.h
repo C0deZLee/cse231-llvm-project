@@ -4,20 +4,21 @@
 #include <string>
 
 using namespace std;
-using namespace llvm;
+//using namespace llvm;
 
-Class LatticeNode{
+class LatticeNode{
 private:
-  String TOP;
-  String BOTTOM;
-  String Basic;
+  static string TOP;
+  static string BOTTOM;
+  string basic;
 public:
   LatticeNode();
+  LatticeNode(string s);
   //Join Function: for the merge operation, should be overridden by subclasses.
   virtual LatticeNode *joinWith(LatticeNode *other);
   virtual bool equalsTo(LatticeNode *other);
   virtual ~LatticeNode();
-}
+};
 
 
 #endif

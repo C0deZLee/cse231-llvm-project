@@ -1,9 +1,7 @@
-#ifndef BasicAnalysis
-#define BasicAnalysis
+#ifndef BASIC_ANALYSIS
+#define BASIC_ANALYSIS
 
-#include "CFGEdge.h"
-#include "CFGNode.h"
-
+#include "CFGUtils.h"
 #include "llvm/Pass.h"
 #include "llvm/IR/Function.h"
 #include "llvm/IR/Module.h"
@@ -12,25 +10,24 @@
 #include "llvm/Support/InstIterator.h"
 #include <vector>
 
+using namespace llvm;
 using namespace std;
 
-Class BasicAnalysis{
+class BasicAnalysis{
 private:
   vector<CFGNode *> CFGNodes;
   vector<CFGEdge *> CFGEdges;
   CFGNode *CFGHead;
 
 public:
-  BasicAnalysis(Function *F);
-  void createCFG(Function *F);
+  BasicAnalysis();
+  BasicAnalysis(Function &F);
+  void createCFG(Function &F);
   void runWorkList();
 
   virtual LatticeNode *runFlowFunc(LatticeNode *in, CFGNode *curNode);
   virtual void init();// Can write in the createCFG func or not?
   virtual ~BasicAnalysis();
 
-}
-
-
-
+};
 #endif
