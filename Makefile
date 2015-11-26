@@ -11,5 +11,8 @@ LEVEL = ../..
 LIBRARYNAME = CSE231
 LOADABLE_MODULE = 1
 
+DIRS = lib
+EXTRA_DIST = include
+
 include $(LEVEL)/Makefile.common
 

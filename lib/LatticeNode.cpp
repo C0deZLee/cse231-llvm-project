@@ -1,7 +1,7 @@
-#include "LatticeNode.h"
+#include "../include/LatticeNode.h"
 
-LatticeNode::TOP = "top";
-LatticeNode::Bottom = "bottom";
+string LatticeNode::TOP = "top";
+string LatticeNode::BOTTOM = "bottom";
 
 
 LatticeNode::LatticeNode(){
@@ -13,12 +13,11 @@ LatticeNode::LatticeNode(string s){
     basic = s;
 }
 
-LatticeNode *LatticeNode::LatticeNode()
-
-
-LatticeNode *LatticeNode::joinWith(LatticeNode *other){
+LatticeNode* LatticeNode::joinWith(LatticeNode *other){
   //most basic(conservative) join
   return new LatticeNode(TOP);
 }
 
-LatticeNode ~LatticeNode(){}//do nothing here
+LatticeNode::~LatticeNode(){
+
+}//do nothing here
