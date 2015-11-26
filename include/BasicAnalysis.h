@@ -9,6 +9,7 @@
 #include "llvm/Support/raw_ostream.h"
 #include "llvm/Support/InstIterator.h"
 #include <vector>
+#include <queue>
 
 using namespace llvm;
 using namespace std;
