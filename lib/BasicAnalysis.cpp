@@ -1,7 +1,7 @@
 #include "../include/BasicAnalysis.h"
 
 BasicAnalysis::BasicAnalysis(Function &F){
-
+    this->createCFG(F);
 }
 
 void BasicAnalysis::createCFG(Function &F){
@@ -105,5 +105,12 @@ LatticeNode *BasicAnalysis::latticeNodeInit(){
 }
 
 BasicAnalysis::~BasicAnalysis(){
-
+    //free the memory
+    for(size_t i=0; i < CFGNodes.size(); i++){
+        delete CFGNodes[i];
+    }
+    for(size_t i = 0; i<CFGNodes.size(); i++){
+        delete CFGEdges[i];
+    }
+    delete CFGHead;
 }

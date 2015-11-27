@@ -3,7 +3,7 @@
 
 
 #include "llvm/IR/Instructions.h"
-#include "LatticeNode.h"
+#include "BasicLattice.h"
 #include <vector>
 
 using namespace std;
