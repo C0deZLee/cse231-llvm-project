@@ -27,7 +27,7 @@ public:
   void runWorkList();
 
   virtual LatticeNode *runFlowFunc(LatticeNode *in, CFGNode *curNode);
-  virtual void init();// Can write in the createCFG func or not?
+  virtual LatticeNode *latticeNodeInit();// Can write in the createCFG func or not?
   virtual ~BasicAnalysis();
 
 };

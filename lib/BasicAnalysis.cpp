@@ -62,11 +62,46 @@ void BasicAnalysis::createCFG(Function &F){
 }
 
 void BasicAnalysis::runWorkList(){
+    queue<CFGNode *>workList;
+    for(size_t i=0; i < CFGEdges.size(); i++){
+        CFGEdges[i]->latticeNode = latticeNodeInit();
+    }
+    for(size_t i=0; i < CFGNodes.size(); i++){
+        workList.push(CFGNodes[i]);
+    }
 
+    //run the worklist algorithm
+    while(!workList.empty()){
+        CFGNode *curNode = workList.front();
+        workList.pop();
+        //join all the latticeNodes on curNode's inEdges.
+        LatticeNode *in = latticeNodeInit();
+        for(size_t i = 0; i < curNode->inEdges.size(); i++){
+            CFGEdge *e = curNode->inEdges[i];
+            LatticeNode *tmp = in->joinWith(e->latticeNode);
+            delete in;
+            in = tmp;
+        }
+
+        //run the flow function and get the new lattice node
+        LatticeNode *out = runFlowFunc(in, curNode);
+
+        //check the out changed or not
+        for(size_t i =0; i < curNode->outEdges.size(); i++){
+            CFGEdge *e = curNode->outEdges[i];
+            LatticeNode *newOut = out->joinWith(e->latticeNode);
+            if(!out->equalsTo(newOut)){
+                delete e->latticeNode;
+                e->latticeNode = newOut;
+                workList.push(e->dstNode);
+            }
+        }
+        delete out;
+    }
 }
 
-void BasicAnalysis::init(){
-
+LatticeNode *BasicAnalysis::latticeNodeInit(){
+    return new LatticeNode(LatticeNode::BOTTOM);
 }
 
 BasicAnalysis::~BasicAnalysis(){

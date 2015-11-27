@@ -28,7 +28,7 @@ class CFGEdge{
 public:
   CFGNode *srcNode;
   CFGNode *dstNode;
-  LatticeNode *latNode;
+  LatticeNode *latticeNode;
   CFGEdge(CFGNode *srcNode, CFGNode *dstNode){
     this->srcNode = srcNode;
     this->dstNode = dstNode;
