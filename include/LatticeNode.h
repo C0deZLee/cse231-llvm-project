@@ -12,7 +12,7 @@ private:
 public:
     static string TOP;
     static string BOTTOM;
-    string basic;
+    string basic;   //to mark the node is top or bottom
 
     LatticeNode();
     LatticeNode(string s);
