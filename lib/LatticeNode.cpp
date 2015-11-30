@@ -3,7 +3,7 @@
 string LatticeNode::TOP = "top";
 string LatticeNode::BOTTOM = "bottom";
 
-
+// basic equals either "top" or "bottom"
 LatticeNode::LatticeNode(){
     basic = "";
 }
