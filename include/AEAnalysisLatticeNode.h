@@ -1,11 +1,3 @@
-#ifndef AE_ANALYSIS_LATTICE_NODE
-#define AE_ANALYSIS_LATTICE_NODE
-
-#include "LatticeNode.h"
-#include <climits>
-#include <map>
-#include <algorithm>
-
 /*
 \\                 May                Must
 \\
@@ -20,21 +12,23 @@
 */
 
 
+#ifndef AE_ANALYSIS_LATTICE_NODE
+#define AE_ANALYSIS_LATTICE_NODE
 
-class AE {
+#include "LatticeNode.h"
+#include <climits>
+#include <map>
+#include <algorithm>
 
-	void printErr();
-
-
-};
 
 class AEAnalysisLatticeNode: public LatticeNode {
 public:
-    map<string, float> value;
+
+    map<string, string> val;
 
 
     bool equalsTo(LatticeNode *other);
-    LatticeNode *joinwith(LatticeNode *other);
+    LatticeNode * joinWith(LatticeNode *other);
 
 	
 	AEAnalysisLatticeNode(); // init
@@ -43,5 +37,11 @@ public:
     ~AEAnalysisLatticeNode();
 
 
+    //fns
+	//void printErr();
+
+	//bool isTopOrBottom();
+
 };
+
 #endif 
