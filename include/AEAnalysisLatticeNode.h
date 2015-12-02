@@ -8,7 +8,7 @@
 \\
 \\  Top = empty   Botom = FS
 \\
-\\
+\\  merge = intersect
 */
 
 
@@ -28,12 +28,12 @@ public:
 
 
     bool equalsTo(LatticeNode *other);
+
     LatticeNode * joinWith(LatticeNode *other);
 
-	
 	AEAnalysisLatticeNode(); // init
     AEAnalysisLatticeNode(string s); // initialize with TOP or BOTTOM
-
+    AEAnalysisLatticeNode(AEAnalysisLatticeNode *node);
     ~AEAnalysisLatticeNode();
 
 
