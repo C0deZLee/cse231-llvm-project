@@ -2,7 +2,6 @@
 #define CONTANT_PROP_ANALYSIS_LATTICE_NODE_H
 #include <string>
 #include <map>
-#include <algorithm>
 #include "llvm/Support/raw_ostream.h"
 #include "LatticeNode.h"
 
@@ -14,19 +13,21 @@ using namespace llvm;
  */
 
 class ConstantPropAnalysisLatticeNode: public LatticeNode {
-public:
-        bool equalsTo(LatticeNode *other);
-        
-        LatticeNode *joinwith(LatticeNode *other);
+private:
 
-	// initialize with an empty map
+public:
+ 	// initialize with an empty map
 	ConstantPropAnalysisLatticeNode();
 
 	// initialize with TOP or BOTTOM
         ConstantPropAnalysisLatticeNode(string input);
-
+ 
         ~ConstantPropAnalysisLatticeNode();
 
+        bool equalsTo(LatticeNode *other);
+        
+        LatticeNode *joinWith(LatticeNode *other);
+
 	map<string, float> value;
-}
+};
 #endif 
