@@ -19,6 +19,9 @@
 #include <climits>
 #include <map>
 #include <algorithm>
+#include "llvm/Support/raw_ostream.h"
+
+using namespace llvm;
 
 
 class AEAnalysisLatticeNode: public LatticeNode {

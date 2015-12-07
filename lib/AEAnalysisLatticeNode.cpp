@@ -1,20 +1,30 @@
 #include "../include/AEAnalysisLatticeNode.h"
 
 
+
 bool AEAnalysisLatticeNode::equalsTo(LatticeNode * other) {
     AEAnalysisLatticeNode * otherNode = static_cast<AEAnalysisLatticeNode*>(other);
     //if I am top or bottom:
     if(this->basic != "") {
         return this->basic == otherNode->basic;
+    }else{ 
+        //err() << "basic is null. \n"; 
     }
     
-    if (otherNode->val.size() != this->val.size()) {
+    //when it is neither yop nor bottom // compare both nodes map size
+    if (this->val.size() != otherNode->val.size()) {
 		return false;
 	}
-
+    //if two maps have same size, check contents
     for(map<string, string>::iterator it = this->val.begin(); it != this->val.end(); it++) {
-        if(otherNode->val.find(it->first) == otherNode->val.end()) { return false; }
-        if(otherNode->val.find(it->second)->second != it->second) { return false; }
+        if(otherNode->val.find(it->first) != otherNode->val.end()) { 
+            //same key found
+            if(otherNode->val.find(it->first)->second != it->second){ //if key is matching but contents
+                return false; 
+            }
+            
+        }
+        //if(otherNode->val.find(it->second)->second != it->second) { return false; }
     }
     
     return true;
@@ -33,13 +43,25 @@ LatticeNode * AEAnalysisLatticeNode::joinWith(LatticeNode * other) {
     //common situation
     AEAnalysisLatticeNode *newNode = new AEAnalysisLatticeNode();
     newNode->val = this->val;
-    map<string, string>::iterator it;
-    for(it = otherNode->val.begin(); it != otherNode->val.end(); it++) {
-        if(newNode->val.find(it->first) != newNode->val.end()) {
-
-        }else{
-
+    
+    for(map<string, string>::iterator it = newNode->val.begin(); it != newNode->val.end(); it++) {
+        if(otherNode->val.find(it->first) == otherNode->val.end()) { 
+            //no same key found, merge(intersect) both nodes to empty!
+            //newNode->val[it->first] = it->second;
+            newNode->val.erase(it);
+        }else if(otherNode->val.find(it->first)->second == it->second) { //same key same value found
+            //newNode->val[it->first] = it->second;
+            errs() << " excuted line 54, AEAnalysisLatticeNode.cpp" <<'\n';
+        }else { //same key found, check contents
+            newNode->val.erase(it);
         }
+        /*
+        if(otherNode->val.find(it->first)->second != it->second){ //if key is matching but contents
+                newNode->val.erase(it);
+                //return false; 
+        }
+        */
+        //if(otherNode->val.find(it->second)->second != it->second) { return false; }
     }
     return newNode;
 }
