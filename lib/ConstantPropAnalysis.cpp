@@ -2,18 +2,19 @@
 using namespace std;
 using namespace llvm;
 
-ConstantPropAnalysis::ConstantPropAnalysis(Function &F):BasicAnalysis(F) {
+ConstantPropAnalysis::ConstantPropAnalysis(Function &F):BasicAnalysis() {
 	errs()<<"Constant Propagation Analysis starts.\n";
+	createCFG(F);	
 }
 
 ConstantPropAnalysis::~ConstantPropAnalysis() {}
 
 // initialize the flow with bottom, does not inherit
-ConstantPropAnalysisLatticeNode* ConstantPropAnalysis::latticeNodeInit() {
+LatticeNode* ConstantPropAnalysis::latticeNodeInit() {
 	return new ConstantPropAnalysisLatticeNode(ConstantPropAnalysisLatticeNode::BOTTOM); 
 }
 
-ConstantPropAnalysisLatticeNode* ConstantPropAnalysis::runFlowFunc(LatticeNode *in, CFGNode *curNode) {
+LatticeNode* ConstantPropAnalysis::runFlowFunc(LatticeNode *in, CFGNode *curNode) {
 	ConstantPropAnalysisLatticeNode *newIn = static_cast<ConstantPropAnalysisLatticeNode *>(in);
 	ConstantPropAnalysisLatticeNode *out;
 	Instruction *inst = curNode->inst;
