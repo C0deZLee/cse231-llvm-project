@@ -1,7 +1,8 @@
 #include "../include/BasicAnalysis.h"
 
-BasicAnalysis::BasicAnalysis(Function &F){
-    this->createCFG(F);
+
+LatticeNode*  BasicAnalysis::runFlowFunc(LatticeNode *in, CFGNode *curNode){
+    return new LatticeNode();
 }
 
 void BasicAnalysis::createCFG(Function &F){
@@ -114,3 +115,5 @@ BasicAnalysis::~BasicAnalysis(){
     }
     delete CFGHead;
 }
+
+

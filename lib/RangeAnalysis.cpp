@@ -1,24 +1,24 @@
 #include "../include/RangeAnalysis.h"
 
-RangeAnalysis::RangeAnalysis(Function &F):BasicAnalysis(F){
-    errs()<<"Range Analysis start.\n";
-}
 
-
-
-RangeAnalysisLatticeNode *RangeAnalysis::runFlowFunc(LatticeNode *in, CFGNode *curNode){
+LatticeNode *RangeAnalysis::runFlowFunc(LatticeNode *in, CFGNode *curNode){
     RangeAnalysisLatticeNode *newIn = static_cast<RangeAnalysisLatticeNode *>(in);
     Instruction *curInst = curNode->inst;
     string opName = curInst->getOpcodeName();
     RangeAnalysisLatticeNode *rlt;
 
-    if(opName == "add" || opName == "sub" || opName == "mul"){
+    if(opName == "add" || opName == "sub" || opName == "mul" || opName == "phi"){
         rlt = visitAOpB(newIn, curInst);
     }else{
         //what should do here?
     }
-    
+
     return rlt;
+}
+
+
+LatticeNode *latticeNodeInit(){
+    return new LatticeNode();
 }
 
 RangeAnalysisLatticeNode *RangeAnalysis::visitAOpB(RangeAnalysisLatticeNode *in, Instruction *inst){
@@ -63,7 +63,7 @@ Range *RangeAnalysis::getOperandRange(Value *operand, RangeAnalysisLatticeNode *
 Range *RangeAnalysis::opRange(Range *leftRange, Range *rightRange, string opName){
     //'op' two given range, and return it
     Range *newRange;
-    if(opName == "add"){
+    if(opName == "add" || opName == "phi"){
         newRange = new Range(leftRange->left + rightRange->left, leftRange->right + rightRange->right);
     }
     if(opName == "sub"){
@@ -82,3 +82,5 @@ Range *RangeAnalysis::opRange(Range *leftRange, Range *rightRange, string opName
 
     return newRange;
 }
+
+RangeAnalysis::~RangeAnalysis(){}

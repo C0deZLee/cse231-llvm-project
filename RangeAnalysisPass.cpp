@@ -15,14 +15,16 @@
 using namespace std;
 using namespace llvm;
 
+
 namespace {
     struct RangeAnalysisPass : public FunctionPass {
     static char ID;
-    vector<RangeAnalysis *> rangeAnalysisVec;
+    vector<BasicAnalysis *> rangeAnalysisVec;
     RangeAnalysisPass() : FunctionPass(ID) {}
     
     bool runOnFunction(Function &F){
-        rangeAnalysisVec.push_back(new RangeAnalysis(F));
+        //rangeAnalysisVec.push_back(new RangeAnalysis(F));
+        BasicAnalysis * BA = new RangeAnalysis(F);
         return true;
     }
 

@@ -7,14 +7,20 @@
 
 class RangeAnalysis: public BasicAnalysis{
 public:
-    RangeAnalysis(Function &F);
-    RangeAnalysisLatticeNode *runFlowFunc(LatticeNode *in, CFGNode *curNode);
-    RangeAnalysisLatticeNode *latticeNodeInit();
+    RangeAnalysis(Function &F): BasicAnalysis(F){
+        errs()<<"Range Analysis start.\n";
+    };
+
+    virtual LatticeNode *runFlowFunc(LatticeNode *in, CFGNode *curNode);
+    LatticeNode *latticeNodeInit();
     ~RangeAnalysis();
+
 private:
+
     RangeAnalysisLatticeNode *visitAOpB(RangeAnalysisLatticeNode *in, Instruction *curInst);
     Range *getOperandRange(Value *operand, RangeAnalysisLatticeNode *in);
     Range *opRange(Range *leftRange, Range *rightRange, string opName);
+    
 };
 
 

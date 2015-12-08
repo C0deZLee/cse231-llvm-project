@@ -3,9 +3,10 @@ LEVEL=../../..
 #
 # Give the name of a library.  This will build a dynamic version.
 #
-LIBRARYNAME = CSE231
-INC_DIR = ../
-CFLAGS=-c -Wall -I$(INC_DIR)
+LIBRARYNAME = CSE231-lib
+
+#INC_DIR = ../
+#CFLAGS=-c -Wall -I$(INC_DIR)
 #
 # Include Makefile.common so we know what to do.
 #
