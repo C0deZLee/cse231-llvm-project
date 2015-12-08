@@ -89,3 +89,4 @@ AEAnalysisLatticeNode::~AEAnalysisLatticeNode() {
 //bool AEAnalysisLatticeNode::isTopOrBottom() {if(this->basic != "") {}
 
 //void AEAnalysisLatticeNode::printErr() {}
+
