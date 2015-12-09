@@ -6,8 +6,14 @@ AEAnalysis::AEAnalysis(Function &F):BasicAnalysis(F){
 }
 
 
+AEAnalysis::~AEAnalysis(){}
 
-AEAnalysisLatticeNode *AEAnalysis::runFlowFunc(LatticeNode *in, CFGNode *currentNode){
+LatticeNode *latticeNodeInit(){
+    return new LatticeNode();
+}
+
+
+LatticeNode *AEAnalysis::runFlowFunc(LatticeNode *in, CFGNode *currentNode){
     
     AEAnalysisLatticeNode *inputIn = static_cast<AEAnalysisLatticeNode *>(in);
     AEAnalysisLatticeNode *returnIn;

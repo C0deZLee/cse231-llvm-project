@@ -13,9 +13,17 @@ using namespace std;
 class AEAnalysis: public BasicAnalysis{
 
 public:
+	/*
     AEAnalysis(Function &F);
     AEAnalysisLatticeNode *runFlowFunc(LatticeNode *in, CFGNode *currentNode);
     AEAnalysisLatticeNode *latticeNodeInit();
+    ~AEAnalysis();
+    */
+    
+    virtual LatticeNode *runFlowFunc(LatticeNode *in, CFGNode *currentNode);
+    LatticeNode *latticeNodeInit();
+
+    AEAnalysis(Function &F);//:BasicAnalysis(F){};
     ~AEAnalysis();
 private:
     AEAnalysisLatticeNode *analyzeAOpB(AEAnalysisLatticeNode *in, Instruction *inst);
