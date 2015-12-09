@@ -7,6 +7,7 @@ LatticeNode*  BasicAnalysis::runFlowFunc(LatticeNode *in, CFGNode *curNode){
 
 void BasicAnalysis::createCFG(Function &F){
     //adopt BFS to build the CFG
+    errs()<<"BasicAnalysis::createCFG Let's create the CFG for func:"<<F.getName()<<"\n";
     queue<Instruction *> q;
     map<Instruction *, CFGNode *> m;
     int idx = 1;

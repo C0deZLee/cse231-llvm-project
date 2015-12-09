@@ -7,8 +7,9 @@
 
 class RangeAnalysis: public BasicAnalysis{
 public:
-    RangeAnalysis(Function &F): BasicAnalysis(F){
+    RangeAnalysis(Function &F): BasicAnalysis(){
         errs()<<"Range Analysis start.\n";
+        //this->createCFG(F);
     };
 
     virtual LatticeNode *runFlowFunc(LatticeNode *in, CFGNode *curNode);
