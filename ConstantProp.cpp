@@ -5,6 +5,7 @@
 #include <string>
 #include <vector>
 #include "include/ConstantPropAnalysis.h"
+#include <iostream>
 
 using namespace std;
 using namespace llvm;

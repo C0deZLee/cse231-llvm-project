@@ -18,8 +18,8 @@ private:
 public:
 	ConstantPropAnalysis(Function &F);
 	~ConstantPropAnalysis();
-	ConstantPropAnalysisLatticeNode *latticeNodeInit();
-	ConstantPropAnalysisLatticeNode *runFlowFunc(LatticeNode *in, CFGNode *curNode);
+	LatticeNode *latticeNodeInit();
+	LatticeNode *runFlowFunc(LatticeNode *in, CFGNode *curNode);
 	float calcOpInst(float left, float right, unsigned opcode);
 	ConstantPropAnalysisLatticeNode *executeOpInst(ConstantPropAnalysisLatticeNode *in, Instruction *inst, unsigned opcode);
 };
